@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="text-center">Всі замовлення</h2>
+
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>Книга</th>
+            <th>Користувач</th>
+            <th>Дата створення</th>
+            <th>Планова дата повернення</th>
+            <th>Статус</th>
+            <th>Дії</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for element in data %}
+        <tr>
+            <td>{{ element.book.name }}</td>
+            <td>{{ element.user.first_name }} {{ element.user.last_name }}</td>
+            <td>{{ element.created_at }}</td>
+            <td>{{ element.plated_end_at }}</td>
+            <td>
+                {% if element.end_at %}
+                    Закритий
+                {% else %}
+                    Відкритий
+                {% endif %}
+            </td>
+            <td>
+                <a class="btn btn-info btn-sm" href="{% url 'book_info' element.book.id %}">Переглянути</a>
+                <a class="btn btn-primary btn-sm" href="{% url 'edit_order' element.book.id %}">Редагувати</a>
+                {% if request.user.is_authenticated and request.user.role == 1 %}
+                <button class="btn btn-danger btn-sm close-order" data-id="{{ element.id }}">Закрити замовлення</button>
+                <form id="close-form-{{ element.id }}" action="{% url 'close_order' element.id %}" method="post" style="display:none;">
+                    {% csrf_token %}
+                </form>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

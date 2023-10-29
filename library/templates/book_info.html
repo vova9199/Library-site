@@ -1,0 +1,35 @@
+{% extends "base.html" %} }
+
+{% block content %}
+    <h2><center> Book</center></h2>
+    <table class="table">
+        <tr>
+            <th scope="row">Id</th>
+            <td>{{ id }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Name</th>
+            <td>{{ name }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Description</th>
+            <td>{{ description }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Author</th>
+            <td>{{ authors }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Count</th>
+            <td>{{ count }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Available</th>
+            <td>{{ available }}</td>
+        </tr>
+    </table>
+    <a class="btn btn-outline-primary" href="{% url 'books' %}">Back</a>
+    <a class="btn btn-outline-info"  href="{% url 'edit_book' id %}">Edit</a>
+    <a class="btn btn-outline-info" href="{% url 'order_book' id %}">Order</a>
+
+{% endblock content %}

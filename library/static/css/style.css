@@ -1,0 +1,71 @@
+body {
+    background-color: #f8f9fa; /* Світлий фон для сторінки */
+}
+
+#myInput {
+    margin-bottom: 20px;
+    max-width: 300px; /* Обмежити ширину поля вводу */
+}
+
+h2 {
+    display: flex; /* Використовуємо flexbox для вирівнювання заголовка та кнопки */
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.table {
+    background-color: #ffffff; /* Білий фон для таблиці */
+    border-radius: 5px; /* Скруглені кути */
+    overflow: hidden; /* Обрізаємо контент за межами таблиці, наприклад, тінь */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Тінь для таблиці */
+}
+
+/* Кнопки: */
+.btn-outline-success {
+    color: #28a745;
+    background-color: transparent;
+    border-color: #28a745;
+}
+
+.btn-outline-success:hover {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-outline-info {
+    color: #17a2b8;
+    background-color: transparent;
+    border-color: #17a2b8;
+}
+
+.btn-outline-info:hover {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-danger:hover {
+    color: #fff;
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.btn-info:hover {
+    color: #fff;
+    background-color: #138496;
+    border-color: #117a8b;
+}

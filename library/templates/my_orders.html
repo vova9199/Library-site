@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="text-center">My orders</h2>
+<!--    <a class="btn btn-outline-success"  href="{% url 'register'%}">New user</a>-->
+<table class="table table-bordered">
+    <thead class="thead-dark">
+    <tr>
+        <th>Book</th>
+        <th>Created date</th>
+        <th>Planned date</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% if data %}
+        {% for element in data %}
+        <tr>
+            <td>{{ element.book.name }}</td>
+            <td>{{ element.created_at }}</td>
+            <td>{{ element.plated_end_at }}</td>
+            <td>
+                <a class="btn btn-info btn-sm" href="{% url 'book_info' element.book.id %}">View</a>
+                <a class="btn btn-primary btn-sm" href="{% url 'edit_order' element.book.id %}">Edit</a>
+                {% if request.user.is_authenticated and request.user.role == 1 %}
+                <form action="{% url 'close_order' element.id %}" method="post" style="display:inline-block;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">Close Order</button>
+                </form>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    {% else %}
+    <tr>
+        <td colspan="4" class="text-center">You have no orders yet.</td>
+    </tr>
+    {% endif %}
+    </tbody>
+</table>
+
+{% endblock content %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="center">
+    <form method="POST" class="card" novalidate>
+        {% csrf_token %}
+        <h1 class="text-center">Register your account</h1>
+<!--        {% for field in form %}-->
+<!--        <label for="{{ field.id_name }}">{{ field.name }}: </label>-->
+<!--        {% if field.id_name == 'password' %}-->
+<!--        <input id="{{ field.id_name }}" type="password" name="{{ field.id_name }}" placeholder="{{ field.name }}" required>-->
+<!--        {% elif field.id_name == 'role' %}-->
+<!--        <div>-->
+<!--            <label><input type="radio" name="{{ field.id_name }}" value="0" {% if form.initial.role == 0 %}selected{% endif %} required>&nbsp;visitor</label><br>-->
+<!--            <label><input type="radio" name="{{ field.id_name }}" value="1" {% if form.initial.role == 1 %}checked{% endif %} required>&nbsp;librarian</label>-->
+<!--        </div>-->
+<!--        {% else %}-->
+<!--        <input id="{{ field.id_name }}" type="text" name="{{ field.id_name }}" placeholder="{{ field.name }}" required>-->
+<!--        {% endif %}-->
+<!--        {% if field.errors %}-->
+<!--        <small>{{ field.errors|striptags }}</small>-->
+<!--        {% endif %}-->
+<!--        {% endfor %}-->
+
+        <h2>User Registration</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+
+
+        <input type="submit" name="submit_action" value="Register" class="btn btn-primary full-width">
+        <hr>
+        <p class="text-center">Forgot your password <a href="#">Reset Password</a></p>
+        <p class="text-center">Don't have an account? <a href="#">Join Now</a></p>
+    </form>
+</div>
+{% endblock content %}

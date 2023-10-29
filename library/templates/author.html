@@ -1,0 +1,37 @@
+{%extends 'base.html'%}
+
+{% block content %}
+<h2> <center>Authors</center></h2>
+    <a class="btn btn-outline-success"  href="{% url 'create_author' %}">New author</a>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Surname</th>
+            <th scope="col">Patronymic</th>
+            <th style="text-align: center" scope="col"></th>
+            <th style="text-align: center" scope="col"></th>
+            <th style="text-align: center" scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for element in author %}
+            <tr>
+                <td width="500">{{ element.name }}</td>
+                <td width="500">{{ element.surname }}</td>
+                <td width="500"> {{element.patronymic}} </td>
+                <td>
+                    <a class="btn btn-outline-info"  href="{% url 'author_by_id_url' element.id %}">info</a>
+                </td>
+                <td>
+                    <a class="btn btn-outline-info"  href="{% url 'edit_author' element.id %}">edit</a>
+                </td>
+                <td>
+                    <a class="btn btn-outline-danger"  href="{% url 'delete_author' element.id %}">Delete</a>
+                </td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}

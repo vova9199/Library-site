@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Instructions -->
+<p class="mt-4">Type something in the input field to search the table for author, title or description:</p>
+
+<!-- Search Bar -->
+<div class="mb-4">
+    <input class="form-control" id="myInput" type="text" placeholder="Search...">
+</div>
+
+<!-- Books Title and Add Button -->
+<div class="d-flex justify-content-between align-items-center">
+    <h2>Books</h2>
+    {% if user.role == 1 %}
+        <a class="btn btn-outline-success" href="{% url 'add_book' %}">Add Book</a>
+    {% endif %}
+</div>
+
+<!-- Table of Books -->
+<div class="table-responsive mt-4">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col" width="500">Name</th>
+                <th scope="col" width="500">Description</th>
+                <th scope="col" width="500">Author</th>
+                <th scope="col" width="50">Count</th>
+                <th scope="col" width="1800">Actions</th>
+            </tr>
+        </thead>
+        <tbody id="myTable">
+            {% for element in data %}
+                <tr>
+                    <td>{{ element.name }}</td>
+                    <td>{{ element.description }}</td>
+                    <td>{{ element.authors }}</td>
+                    <td>{{ element.count }}</td>
+                    <td>
+                        <a class="btn btn-outline-info btn-sm" href="{% url 'book_info' element.id %}">View</a>
+                        {% if user.role == 1 %}
+                            <a class="btn btn-info btn-sm" href="{% url 'edit_book' element.id %}">Edit</a>
+                            <a class="btn btn-danger btn-sm" href="{% url 'book_delete' element.id %}">Delete</a>
+                        {% endif %}
+                        <a class="btn btn-primary btn-sm" href="{% url 'order_book' element.id %}">Order</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- jQuery Script for Search Functionality -->
+<script>
+    $(document).ready(function() {
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+
+{% endblock content %}

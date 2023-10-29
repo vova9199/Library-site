@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Create a New Book</h2>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <label for="{{ form.name.id_for_label }}">Name:</label>
+    {{ form.name }}<br><br>
+
+    <label for="{{ form.description.id_for_label }}">Description:</label>
+    {{ form.description }}<br><br>
+
+    <label for="{{ form.count.id_for_label }}">Count:</label>
+    {{ form.count }}<br><br>
+
+    <label for="{{ form.authors.id_for_label }}">Authors:</label>
+    {{ form.authors }}<br><br>
+
+    <input type="submit" value="Create Book">
+  </form>
+{% endblock content %}

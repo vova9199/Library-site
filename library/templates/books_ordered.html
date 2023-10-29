@@ -1,0 +1,27 @@
+{%extends 'base.html'%}
+
+{% block content %}
+<h2> <center>Books</center></h2>
+<!--    <a class="btn btn-outline-success"  href="{% url 'register'%}">New user</a>-->
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Planed date</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for element in data %}
+            <tr>
+                <td width="500">{{ element.book.name }}</td>
+                <td width="500">{{ element.book.description }}</td>
+                <td width="500">{{ element.plated_end_at }}</td>
+                <td>
+                    <a class="btn btn-outline-info"  href="{% url 'book_info' element.id %}">View</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}
